@@ -1,19 +1,23 @@
 const express = require('express')
 const router = express.Router()
+const companyController = require('../controllers/companyController')
 
-const {
-  registerUser,
-  loginUser,
-  getMe
-} = require('../controllers/userController')
+router
+    // get routes : show all jerbs and show specific jerbs
+    //get all
+    .get('/', companyController.getAllCompanies)
+    //search all
+    .get('/search', companyController.searchCompanies)
+    //get one
+    .get('/:id', companyController.getCompany)
 
-const { protect } = require('../middleware/authMiddleware')
+    // post route: create new jerb
+    .post('/', companyController.newCompany)
 
-router.post('/', registerUser)
+    // put route: update specific company
+    .put('/:id', companyController.updateCompany)
 
-router.post('/login', loginUser)
-
-// Protected route (2nd argument) - protect
-router.get('/me', protect, getMe)
+    // delete route: delete specific company
+    .delete('/id', companyController.deleteCompany)
 
 module.exports = router
