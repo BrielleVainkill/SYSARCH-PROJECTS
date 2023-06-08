@@ -4,7 +4,7 @@ function Jobs() {
     return (
         <>
             <div className="">
-                <div id="job-headings" class="flex justify-between text-lg">
+                <div id="job-headings" className="flex justify-between text-lg">
                     <div>Position</div>
                     <div>Company</div>
                     <div>Location</div>
