@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const companySchema = new mongoose.Schema({
     name: {
@@ -34,3 +34,8 @@ const companySchema = new mongoose.Schema({
         required: true
     }
 })
+
+// Create a text index on the 'name' and 'description' fields
+companySchema.index({ name: 'text', description: 'text' });
+
+module.exports = mongoose.model('Company', companySchema);

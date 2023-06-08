@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 //const router = require('./routes/router')
@@ -12,10 +13,11 @@ const port = process.env.PORT;
 const mongoUri = process.env.MONGO_URI;
 
 // Middlewares
+app.use(cors());
 app.use(express.json());
 
 // Using router
-//app.use('/api', router);
+app.use('/api/companies', require('./routes/companyRoutes'));
 
 // Connect MongodDB
 mongoose.connect(`${mongoUri}`, {

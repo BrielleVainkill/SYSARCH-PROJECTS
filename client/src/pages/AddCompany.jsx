@@ -18,9 +18,23 @@ function AddCompany() {
 
     const navigate = useNavigate();
 
-    const onChange = (e) => {   
-        setCompany({ ...company, [e.target.name]: e.target.value })
-    }
+    const onChange = (e) => {
+        if (e.target.name.startsWith("address.")) {
+          const addressField = e.target.name.split(".")[1];
+          setCompany((prevCompany) => ({
+            ...prevCompany,
+            address: {
+              ...prevCompany.address,
+              [addressField]: e.target.value,
+            },
+          }));
+        } else {
+          setCompany((prevCompany) => ({
+            ...prevCompany,
+            [e.target.name]: e.target.value,
+          }));
+        }
+      };
 
     const onSubmit = async (e) => {
         e.preventDefault()
